@@ -3,7 +3,7 @@ public class EducacaoAutomatizada {
     public static void mensagemDaHora(int hora){
 
         switch (hora){
-            case 4:
+
             case 5:
             case 6:
             case 7:
@@ -21,6 +21,7 @@ public class EducacaoAutomatizada {
             case 17:
             case 18:
                 mensagemBoaTarde();
+
                 break;
             case 19:
             case 20:
@@ -31,6 +32,7 @@ public class EducacaoAutomatizada {
             case 01:
             case 02:
             case 03:
+            case 04:
                 mensagemBoaNoite();
                 break;
             default:
