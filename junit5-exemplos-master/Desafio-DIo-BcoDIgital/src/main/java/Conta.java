@@ -18,6 +18,10 @@ public abstract class Conta implements IConta{
   this.endereco = endereco;
  }
 
+    public Cliente getCliente() {
+        return Cliente;
+    }
+
     public int getAgencia() {
         return agencia;
     }
