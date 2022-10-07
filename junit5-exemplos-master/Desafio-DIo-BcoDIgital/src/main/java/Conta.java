@@ -40,23 +40,48 @@ public abstract class Conta implements IConta{
     }
 
     @Override
-    public void sacar(double valor) {
-      LOGGER.info("O MÉTODO SACAR() FOI ACIANADO");
-      saldo -= valor;
+    public boolean sacar(double valor) {
+        if (valor > 0 && valor <= saldo) {
+            System.out.println("Saque em andamento...");
+            LOGGER.info("O MÉTODO SACAR() FOI ACIANADO");
+            saldo -= valor;
+            System.out.println("Saque efetuado com sucesso.");
+            System.out.println("Saldo após o saque: R$ " + this.saldo);
+            return true;
+        } else {
+            System.out.println("Operação saque indisponínel para esse valor");
+            return false;
+        }
     }
 
     @Override
-    public void depositar(double valor) {
-        LOGGER.info("O MÉTODO DEPOSITAR() FOI ACIONADO");
-        saldo += valor;
+    public boolean depositar(double valor) {
+        if (valor > 0) {
+
+            LOGGER.info("O MÉTODO DEPOSITAR() FOI ACIONADO");
+            saldo += valor;
+            System.out.println("Depósito efetuado com sucesso");
+            System.out.println("Saldo Após o depósito: R$ " +this.saldo);
+            return true;
+        }else{
+            System.out.println("Por favor, deposite um valor maior que zero.");
+            return false;
+        }
     }
 
     @Override
-    public void tranferir(double valor, Conta contaDestino) {
+    public boolean tranferir(double valor, Conta contaDestino) {
+     if (valor <= saldo && valor >0){
+
         LOGGER.info("O MÉTODO TRANSFERIR() FOI ACIONADO");
-     this.sacar(valor);
+        this.sacar(valor);
          contaDestino.depositar(valor);
-
+         System.out.println("Transferência efetuada com sucesso.");
+         System.out.println("Saldo após a transferência: R$ " + this.saldo);
+         return true;
+     }
+        System.out.println("Transferência indisponível para esse valor. Por favor, verifique seu saldo.");
+        return false;
     }
 
     protected void atributosComunsDeImpressao() {
