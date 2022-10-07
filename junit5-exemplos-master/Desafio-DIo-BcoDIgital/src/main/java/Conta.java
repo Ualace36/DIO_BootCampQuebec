@@ -1,4 +1,8 @@
+import java.util.logging.Logger;
+
 public abstract class Conta implements IConta{
+
+    private static  final Logger LOGGER = Logger.getLogger(Conta.class.getName());
    private static final int AGENCIA_PADRAO = 001;
    private static  int SEQUENCIAL = 001;
     protected int agencia;
@@ -20,22 +24,26 @@ public abstract class Conta implements IConta{
     }
 
     public double getSaldo() {
-        return saldo;
+     LOGGER.info("O MÉTODO getSaldo() foi acionado");
+     return saldo;
     }
 
     @Override
     public void sacar(double valor) {
-        saldo -= valor;
+      LOGGER.info("O MÉTODO SACAR() FOI ACIANADO");
+      saldo -= valor;
     }
 
     @Override
     public void depositar(double valor) {
+        LOGGER.info("O MÉTODO DEPOSITAR() FOI ACIONADO");
         saldo += valor;
     }
 
     @Override
     public void tranferir(double valor, Conta contaDestino) {
-         this.sacar(valor);
+        LOGGER.info("O MÉTODO TRANSFERIR() FOI ACIONADO");
+     this.sacar(valor);
          contaDestino.depositar(valor);
 
     }
