@@ -5,14 +5,17 @@ public abstract class Conta implements IConta{
     private static  final Logger LOGGER = Logger.getLogger(Conta.class.getName());
    private static final int AGENCIA_PADRAO = 001;
    private static  int SEQUENCIAL = 001;
+    protected  Cliente Cliente;
     protected int agencia;
     protected   int numero;
     protected double saldo;
+   Endereco endereco;
 
-
- public Conta() {
+ public Conta(Cliente cliente) {
   this.agencia = AGENCIA_PADRAO;
   this.numero = SEQUENCIAL++;
+  this.Cliente = cliente;
+  this.endereco = endereco;
  }
 
     public int getAgencia() {
@@ -26,6 +29,10 @@ public abstract class Conta implements IConta{
     public double getSaldo() {
      LOGGER.info("O MÉTODO getSaldo() foi acionado");
      return saldo;
+    }
+
+    public Endereco getEndereco() {
+        return endereco;
     }
 
     @Override
@@ -49,6 +56,7 @@ public abstract class Conta implements IConta{
     }
 
     protected void atributosComunsDeImpressao() {
+        System.out.println(String.format("Titular: %s", this.Cliente ));
         System.out.println(String.format("Agência: %d", this.agencia));
         System.out.println(String.format("Conta: %d", this.numero));
         System.out.println(String.format("Saldo: %.2f", this.saldo));
